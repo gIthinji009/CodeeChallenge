@@ -1,0 +1,29 @@
+<html lang="en">
+    <head>
+        <meta charset="UTF-8">
+        <meta name="viewport" content="width=device-width,initial-scale=1.0">
+        
+        <!--This is the title displayed on the page-->
+        <title>STUDENT GRADE GENERATOR</title>
+    </head>
+    <body>
+        
+        <!--Section where marks are to be entered-->
+        <h1>Insert marks here</h1>
+
+       <div class="container">
+        
+        <label for="Marks">Insert the Student's mark</label>
+        
+        <input type="number" id="Marks" min="0" max="100">
+
+        <button onclick="calculateGrade()">Calculate Grade</button>
+
+        <p id="resultsDisplayed"></p>
+    
+       </div>
+
+<!--External link to js-->
+<script src="./index.js"></script>
+</body>
+</html>
