@@ -1,25 +1,33 @@
 <!DOCTYPE html>
-<html>
-    <head>
-        <meta charset="UTF-8">
-        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+<head>
+    <!--This is the ttle displayed on a webpage-->
+  <title>Speed Checker</title>
+  <!--This initializes javascript functions to manipulate data-->
+  <script>
+    function checkSpeed() {
+      var speed = parseFloat(document.getElementById("speedInput").value);
+      var speedLimit = 70;
+      var demeritPoints = 0;
 
-        <title>SPEED DETECTOR</title>
-        <script src="SpeedDetector/index.js"></script>
-        
-    </head>
+      if (speed <= speedLimit) {
+        document.getElementById("result").innerHTML = "Ok";
+      } else {
+        demeritPoints = Math.floor((speed - speedLimit) / 5);
 
-    <body>
-        <h1>Speed Detector</h1>
-        
-        <form onsubmit="handleFormSubmit(event)">
-        <label for="Speed-input">Enter Speed:</label>
-        <input type="number" id="Speed-input" name="Speed" required>
-        <button type="submit">checkSpeed</button>
-      </form>
-            
-            <div id="result-container"></div>
-      
-       
-    </body>
+        if (demeritPoints > 12) {
+          document.getElementById("result").innerHTML = "License suspended";
+        } else {
+          document.getElementById("result").innerHTML = "Points: " + demeritPoints;
+        }
+      }
+    }
+  </script>
+</head>
+<body>
+  <h1>Speed Checker</h1>
+  <label for="speedInput">Enter the car's speed:</label>
+  <input type="number" id="speedInput" />
+  <button onclick="checkSpeed()">Check</button>
+  <p id="result"></p>
+</body>
 </html>
