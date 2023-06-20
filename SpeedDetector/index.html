@@ -3,30 +3,17 @@
     <!--This is the ttle displayed on a webpage-->
   <title>Speed Checker</title>
   <!--This initializes javascript functions to manipulate data-->
-  <script>
-    function checkSpeed() {
-      var speed = parseFloat(document.getElementById("speedInput").value);
-      var speedLimit = 70;
-      var demeritPoints = 0;
-
-      if (speed <= speedLimit) {
-        document.getElementById("result").innerHTML = "Ok";
-      } else {
-        demeritPoints = Math.floor((speed - speedLimit) / 5);
-
-        if (demeritPoints > 12) {
-          document.getElementById("result").innerHTML = "License suspended";
-        } else {
-          document.getElementById("result").innerHTML = "Points: " + demeritPoints;
-        }
-      }
-    }
+  <script src="/SpeedDetector/index.js">
   </script>
 </head>
 <body>
+  <!--Body heading-->
   <h1>Speed Checker</h1>
+  <!--Labelled space for input-->
   <label for="speedInput">Enter the car's speed:</label>
+  <!--Speed input is inserted here-->
   <input type="number" id="speedInput" />
+  <!--button gets results for manipulated input data-->
   <button onclick="checkSpeed()">Check</button>
   <p id="result"></p>
 </body>
