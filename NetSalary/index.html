@@ -1,0 +1,75 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <link rel="stylesheet" href="./style.css">
+  <title>Payee Calculator</title>
+  <script>
+    function calculatePayroll() {
+      var basicSalary = parseFloat(document.getElementById("basicSalary").value);
+      var benefits = parseFloat(document.getElementById("benefits").value);
+
+      var taxRates = {
+        0: 0,
+        12298: 10,
+        23885: 15,
+        35472: 20,
+        47059: 25,
+        58646: 30,
+        70233: 35,
+        1000000000: 40
+      };
+
+      var nhifRates = {
+        0: 0,
+        5999: 150,
+        7999: 300,
+        11999: 400,
+      };
+
+      var nssfRate = 6;
+
+      var taxableAmount = basicSalary + benefits;
+      var payeeTax = 0;
+      for (var rate in taxRates) {
+        if (taxableAmount <= rate) {
+          payeeTax = taxableAmount * (taxRates[rate] / 100);
+          break;
+        }
+      }
+
+      var nhifDeduction = 0;
+      for (var amount in nhifRates) {
+        if (taxableAmount <= amount) {
+          nhifDeduction = nhifRates[amount];
+          break;
+        }
+      }
+
+      var nssfDeduction = (basicSalary + benefits) * (nssfRate / 100);
+
+      var netSalary = basicSalary + benefits - payeeTax - nhifDeduction - nssfDeduction;
+
+      document.getElementById("payeeTax").innerHTML = payeeTax.toFixed(2);
+      document.getElementById("nhifDeduction").innerHTML = nhifDeduction.toFixed(2);
+      document.getElementById("nssfDeduction").innerHTML = nssfDeduction.toFixed(2);
+      document.getElementById("netSalary").innerHTML = netSalary.toFixed(2);
+    }
+  </script>
+</head>
+<body>
+    <div class="header">
+        <h1>Payee Calculator</h1>
+    </div>
+  <label for="basicSalary">Basic Salary:</label>
+  <input type="number" id="basicSalary" /><br><br>
+  <label for="benefits">Benefits: </label>
+  <input type="number" id="benefits" /><br><br>
+  <button onclick="calculatePayroll()">Calculate</button>
+  <br><br>
+  <h2 class="header">Payroll Summary:</h2>
+  <p>Payee Tax: Ksh <span id="payeeTax"></span></p>
+  <p>NHIF Deduction: Ksh <span id="nhifDeduction"></span></p>
+  <p>NSSF Deduction: Ksh <span id="nssfDeduction"></span></p>
+  <p>Net Salary: Ksh <span id="netSalary"></span></p>
+</body>
+</html>

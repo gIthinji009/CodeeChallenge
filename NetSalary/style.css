@@ -1,0 +1,10 @@
+.header{
+    /* background-color: rgba(45, 75, 89, 20%); */
+    padding: 10px;
+    text-align: center;
+    color: red;
+}
+body{
+    background-color: beige;
+    color: rgb(86, 43, 226);
+}
